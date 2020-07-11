@@ -1,0 +1,3 @@
+# GODOT new project template
+Lorem ipsum dolor...
+

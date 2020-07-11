@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/Fonts/font00.tres" type="DynamicFont" id=1]
+
+[node name="GameOver" type="CanvasLayer"]
+
+[node name="MainMessage" type="Label" parent="."]
+anchor_left = 0.194339
+anchor_top = 0.369229
+anchor_right = 0.803714
+anchor_bottom = 0.609229
+margin_right = -468.0
+margin_bottom = -108.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = ExtResource( 1 )
+text = "GAME OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
