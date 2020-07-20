@@ -3,6 +3,8 @@ extends Node
 const ScreenOverlay: PackedScene = preload("res://src/FX/ScreenOverlay.tscn")
 const MAIN_GAME_SCENE := "res://src/Game.tscn"
 const FADE_DELAY = .6
+const FPS = 64
+const TILE_SIZE = 64
 
 var current_scene_path:= ""
 
@@ -15,7 +17,6 @@ func _ready():
 
 
 func restart_scene():
-	fade_out_transition()
 	yield(get_tree().create_timer(FADE_DELAY), "timeout")
 	switch_scene(current_scene_path)
 
@@ -30,10 +31,8 @@ func switch_scene(path: String):
 func _deferred_goto_scene(path: String):
 	if path.length() == 0:
 		path = MAIN_GAME_SCENE
-	
 	# It is now safe to remove the current scene
 	current_scene.free()
-	
 	# Load the new scene.
 	var s = ResourceLoader.load(path)
 	# Instance the new scene.
