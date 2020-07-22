@@ -1,6 +1,7 @@
 extends Actor
 
-const GROUP = "pickups"
+signal coin_picked
+const GROUP = "players"
 export var friction := 16
 export var acceleration := 16
 export var jump_height := 128 # px
@@ -18,9 +19,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if is_dead :
+	if is_disabled_movement :
 		return
-	velocity.y += gravity * delta
 	if direction_x != 0:
 		velocity.x += direction_x * acceleration * delta * Global.FPS
 		velocity.x = clamp(velocity.x, -speed_max, speed_max)
@@ -46,5 +46,6 @@ func _on_Detector_body_entered(body):
 
 
 func _on_Detector_area_entered(area):
-	if area.is_in_group("pick") && area.has_method("pick"):
+	if area.is_in_group("pickups") && area.has_method("pick"):
 		area.pick()
+		emit_signal("coin_picked")

@@ -1,5 +1,5 @@
 class_name Pickup
-extends StaticBody2D
+extends Area2D
 
 signal picked
 const GROUP = "pickups"
@@ -11,8 +11,13 @@ func _ready():
 
 
 func pick():
-	$CollisionShape2D.queue_free()
+	remove_collisions()
 	emit_signal("picked")
 	$AnimationPlayer.play("picked")
 	yield($AnimationPlayer, "animation_finished")
 	queue_free()
+
+
+func remove_collisions():
+	if is_instance_valid($CollisionShape2D):
+		$CollisionShape2D.queue_free()

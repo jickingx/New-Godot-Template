@@ -5,14 +5,20 @@ signal died
 const ParticlesExplosion = preload("res://src/FX/Particles/Explosion.tscn")
 export var gravity := 640 * 2  # px / s ^2
 export var speed_max := 256 # px / s
-var is_dead := false
+var is_disabled_movement := false
 var velocity = Vector2.ZERO
 
 
+func _physics_process(delta):
+	if is_disabled_movement :
+		return
+	velocity.y += gravity * delta
+
+
 func die():
-	is_dead = true
+	is_disabled_movement = true
 	emit_signal("died")
-	collisions_deffered()
+	remove_collisions()
 	add_explosion()
 	$AnimationPlayer.play("hurt")
 	$Sounds/Hurt.play()
@@ -27,7 +33,7 @@ func add_explosion():
 	ex.emitting = true
 
 
-func collisions_deffered():
+func remove_collisions():
 	if is_instance_valid($CollisionShape2D):
 		$CollisionShape2D.queue_free()
 	if is_instance_valid($Detector):

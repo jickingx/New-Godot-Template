@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://src/Objects/Pickups/Pickup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Levels/Level.gd" type="Script" id=3]
 [ext_resource path="res://assets/Art/Tileset.png" type="Texture" id=4]
+[ext_resource path="res://assets/Themes/theme00.tres" type="Theme" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -89,4 +91,17 @@ tile_data = PoolIntArray( 524300, 1, 0, 524301, 1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 111.377, 220.867 )
+
+[node name="Area2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 478.77, 375.456 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+theme = ExtResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="coin_picked" from="Player" to="." method="_on_Player_coin_picked"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]

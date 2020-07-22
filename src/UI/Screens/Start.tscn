@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/Fonts/font00.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Screens/Start.gd" type="Script" id=2]
 [ext_resource path="res://assets/Sounds/start.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/Themes/theme00.tres" type="Theme" id=4]
 
 [node name="Start" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -16,6 +17,7 @@ anchor_bottom = 0.623945
 margin_right = -243.0
 margin_bottom = -108.0
 rect_scale = Vector2( 4, 4 )
+theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 text = "TITLE"
 align = 1
@@ -28,6 +30,8 @@ anchor_left = 0.408691
 anchor_top = 0.645833
 anchor_right = 0.591309
 anchor_bottom = 0.710833
+theme = ExtResource( 4 )
+toggle_mode = true
 text = "START"
 __meta__ = {
 "_edit_use_anchors_": true
