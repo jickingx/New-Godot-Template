@@ -1,7 +1,7 @@
 class_name Actor
 extends KinematicBody2D
 
-signal die
+signal died
 const ParticlesExplosion = preload("res://src/FX/Particles/Explosion.tscn")
 export var gravity := 640 * 2  # px / s ^2
 export var speed_max := 256 # px / s
@@ -10,8 +10,9 @@ var velocity = Vector2.ZERO
 
 
 func die():
-	emit_signal("die")
 	is_dead = true
+	emit_signal("died")
+	collisions_deffered()
 	add_explosion()
 	$AnimationPlayer.play("hurt")
 	$Sounds/Hurt.play()
@@ -24,3 +25,10 @@ func add_explosion():
 	ex.position = self.position
 	Global.current_scene.add_child(ex)
 	ex.emitting = true
+
+
+func collisions_deffered():
+	if is_instance_valid($CollisionShape2D):
+		$CollisionShape2D.queue_free()
+	if is_instance_valid($Detector):
+		$Detector.queue_free()

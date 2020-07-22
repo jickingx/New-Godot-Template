@@ -32,7 +32,7 @@ func _deferred_goto_scene(path: String):
 	if path.length() == 0:
 		path = MAIN_GAME_SCENE
 	# It is now safe to remove the current scene
-	current_scene.free()
+	current_scene.queue_free()
 	# Load the new scene.
 	var s = ResourceLoader.load(path)
 	# Instance the new scene.

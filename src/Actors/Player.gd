@@ -1,10 +1,16 @@
 extends Actor
 
+const GROUP = "pickups"
 export var friction := 16
 export var acceleration := 16
 export var jump_height := 128 # px
 var jump_velocity := sqrt(2 * gravity * jump_height) # px / s
 var direction_x := 0
+
+
+func _ready():
+	if not self.is_in_group(GROUP):
+		self.add_to_group(GROUP)
 
 
 func _process(delta):
@@ -37,3 +43,8 @@ func _physics_process(delta):
 func _on_Detector_body_entered(body):
 	if body.is_in_group("hazards"):
 		die()
+
+
+func _on_Detector_area_entered(area):
+	if area.is_in_group("pick") && area.has_method("pick"):
+		area.pick()
