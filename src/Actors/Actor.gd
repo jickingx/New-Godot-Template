@@ -17,13 +17,13 @@ func _physics_process(delta):
 
 func die():
 	is_disabled_movement = true
-	emit_signal("died")
 	remove_collisions()
 	add_explosion()
 	$AnimationPlayer.play("hurt")
 	$Sounds/Hurt.play()
 	yield($Sounds/Hurt, "finished")
-	queue_free()
+	emit_signal("died")
+	#handle death on died signal observer
 
 
 func add_explosion():

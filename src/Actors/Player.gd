@@ -49,3 +49,7 @@ func _on_Detector_area_entered(area):
 	if area.is_in_group("pickups") && area.has_method("pick"):
 		area.pick()
 		emit_signal("coin_picked")
+
+
+func _on_Player_died():
+	queue_free()
