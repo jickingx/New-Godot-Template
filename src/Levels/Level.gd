@@ -8,8 +8,9 @@ func _ready():
 
 
 func bind_player_events():
-		for player in Global.current_scene.get_tree().get_nodes_in_group("players"):
-			player.connect("coin_picked", self, "_on_Player_coin_picked")
+	for player in Global.current_scene.get_tree().get_nodes_in_group("players"):
+		player.connect("died", self, "_on_Player_died")
+		player.connect("coin_picked", self, "_on_Player_coin_picked")
 
 
 func _on_Player_died():

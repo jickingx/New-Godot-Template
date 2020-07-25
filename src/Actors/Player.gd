@@ -19,12 +19,11 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if is_disabled_movement :
+	if not can_move:
 		return
 	if direction_x != 0:
 		velocity.x += direction_x * acceleration * delta * Global.FPS
 		velocity.x = clamp(velocity.x, -speed_max, speed_max)
-
 	if is_on_floor():
 		if direction_x == 0:
 			velocity.x = lerp(velocity.x, 0, friction * delta)
@@ -36,7 +35,6 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x, 0, friction / 4 * delta)
 		if Input.is_action_just_released("ui_up") and velocity.y < -jump_velocity / 2:
 			velocity.y = -jump_velocity / 2
-
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
@@ -53,3 +51,6 @@ func _on_Detector_area_entered(area):
 
 func _on_Player_died():
 	queue_free()
+
+
+

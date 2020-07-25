@@ -2,28 +2,31 @@ class_name Actor
 extends KinematicBody2D
 
 signal died
-const ParticlesExplosion = preload("res://src/FX/Particles/Explosion.tscn")
+export (PackedScene) var ParticlesExplosion: PackedScene
 export var gravity := 640 * 2  # px / s ^2
 export var speed_max := 256 # px / s
-var is_disabled_movement := false
+var can_move := true
 var velocity = Vector2.ZERO
 
 
+func _ready():
+	assert(ParticlesExplosion, "'ParticlesExplosion' wasn't set")
+
 func _physics_process(delta):
-	if is_disabled_movement :
+	if not can_move :
 		return
 	velocity.y += gravity * delta
 
 
 func die():
-	is_disabled_movement = true
+	can_move = false
 	remove_collisions()
 	add_explosion()
 	$AnimationPlayer.play("hurt")
 	$Sounds/Hurt.play()
 	yield($Sounds/Hurt, "finished")
 	emit_signal("died")
-	#handle death on died signal observer
+	#call free() on signal observer
 
 
 func add_explosion():
