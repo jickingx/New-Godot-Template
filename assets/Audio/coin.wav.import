@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/quake.wav-b12433a032ccb508194dbfed9201624c.sample"
+path="res://.import/coin.wav-ad121e8ce50712a5732429daab8870f5.sample"
 
 [deps]
 
-source_file="res://assets/Sounds/quake.wav"
-dest_files=[ "res://.import/quake.wav-b12433a032ccb508194dbfed9201624c.sample" ]
+source_file="res://assets/Audio/coin.wav"
+dest_files=[ "res://.import/coin.wav-ad121e8ce50712a5732429daab8870f5.sample" ]
 
 [params]
 
