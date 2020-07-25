@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="NEW GAME"
 run/main_scene="res://src/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
 [autoload]
 
