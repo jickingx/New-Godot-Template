@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/quake.wav-295942b22550f566ca6d9a1d99bc2d81.sample"
+path="res://.import/quake.wav-ffa43f34b39f0a3a95cb8d151b603289.sample"
 
 [deps]
 
-source_file="res://assets/Audio/quake.wav"
-dest_files=[ "res://.import/quake.wav-295942b22550f566ca6d9a1d99bc2d81.sample" ]
+source_file="res://assets/Audio/SFX/quake.wav"
+dest_files=[ "res://.import/quake.wav-ffa43f34b39f0a3a95cb8d151b603289.sample" ]
 
 [params]
 
