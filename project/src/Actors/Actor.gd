@@ -31,8 +31,8 @@ func die():
 
 func add_explosion():
 	var ex = ParticlesExplosion.instance()
-	ex.position = self.position
 	Global.current_scene.add_child(ex)
+	ex.global_position = self.global_position
 	ex.emitting = true
 
 
