@@ -1,25 +1,31 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/Themes/Fonts/font00.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Themes/Fonts/font01-title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Screens/Start.gd" type="Script" id=2]
 [ext_resource path="res://assets/Audio/SFX/start.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/Themes/theme00.tres" type="Theme" id=4]
-
-
-
 
 [node name="Start" type="CanvasLayer"]
 script = ExtResource( 2 )
 next_scene = "res://src/Levels/LevelTemplate.tscn"
 
-[node name="Title" type="Label" parent="."]
-anchor_left = 0.335488
-anchor_top = 0.383945
-anchor_right = 0.651894
-anchor_bottom = 0.623945
-margin_right = -243.0
-margin_bottom = -108.0
-rect_scale = Vector2( 4, 4 )
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 191.0
+margin_right = 1024.0
+margin_bottom = 335.0
 theme = ExtResource( 4 )
 custom_fonts/font = ExtResource( 1 )
 text = "TITLE"
@@ -28,11 +34,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="Button" parent="."]
-anchor_left = 0.408691
-anchor_top = 0.645833
-anchor_right = 0.591309
-anchor_bottom = 0.710833
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 367.0
+margin_right = 1024.0
+margin_bottom = 409.0
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 461.0
+margin_right = 563.0
+margin_bottom = 42.0
 theme = ExtResource( 4 )
 toggle_mode = true
 text = "START"
@@ -42,4 +52,4 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/CenterContainer/Button" to="." method="_on_Button_button_up"]
